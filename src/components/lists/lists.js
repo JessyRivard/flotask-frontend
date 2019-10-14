@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Tasks from "./tasks/tasks";
 import * as api from "../../api";
 
 class Lists extends Component {
@@ -25,7 +26,12 @@ class Lists extends Component {
 
     render () {
         return (
-        <div>{this.state.lists.map(list => (<p key={list._id}>{list.title}</p>))}</div>
+        <div>{this.state.lists.map(list => (<div key={list._id}>
+            <h3>{list.title}</h3>
+            <Tasks
+                tasks={list.tasks}
+            />
+        </div>))}</div>
         )}
 }
 
