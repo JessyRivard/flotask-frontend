@@ -7,9 +7,8 @@ class Tasks extends Component {
             <div>
                 {this.props.tasks.map(task => (
                     <div key={task._id}>
-                        <input type="checkbox" id={task._id} name="complete" checked={task.meta.completed} readonly/>
-                        <label for={task._id}>{task.task}</label>
-                        <p><i>{task.details}</i></p>
+                        <input type="checkbox" id={task._id} name="complete" checked={task.meta.completed} readOnly/>
+                        <label onClick={this.props.onSelectTask} htmlFor={task._id}>{task.task}</label>
                     </div>
                 ))}
             </div>
