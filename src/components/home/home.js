@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Lists from "./lists/lists";
 import Task from "./task/task";
 import * as api from "../../api";
@@ -39,8 +40,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <NavLink to="/newtask" >New Task</NavLink>
         <Lists lists={this.state.lists} onSelectTask={this.onSelectTask} />
-        <br/>
+        <br />
         <Task task={this.state.selectedTask} />
       </div>
     );
