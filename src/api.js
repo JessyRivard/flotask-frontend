@@ -21,5 +21,12 @@ module.exports = {
       .then(response => {
         return response.data;
       });
+  },
+  updateTask: function(task) {
+    return window
+      .axios(encodedURI + "tasks/update", { method: "POST", data: task })
+      .then(response => {
+        return response.data;
+      });
   }
 };

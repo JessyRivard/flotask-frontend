@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import {Switch, Route } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import Lists from "./lists/lists";
 import Task from "./task/task";
+import EditTask from "./task/editTask";
 import * as api from "../../api";
 
 class Home extends Component {
@@ -38,12 +40,30 @@ class Home extends Component {
   };
 
   render() {
+    const ShowTask = () => {
+      return (
+        <Task 
+        task={this.state.selectedTask}
+        />
+      );
+    };
+    const ModifyTask = () => {
+      return (
+        <EditTask
+        task={this.state.selectedTask}
+        />
+      );
+    }
+
     return (
       <div>
         <NavLink to="/newtask" >New Task</NavLink>
         <Lists lists={this.state.lists} onSelectTask={this.onSelectTask} />
         <br />
-        <Task task={this.state.selectedTask} />
+        <Switch>
+          <Route exact path="/editTask" render={ModifyTask} />
+          <Route path="/" render={ShowTask} />
+        </Switch>
       </div>
     );
   }
