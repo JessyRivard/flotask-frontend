@@ -29,7 +29,7 @@ class Home extends Component {
   };
 
   onSelectTask = e => {
-    var id = e.target.htmlFor;
+    var id = e.target.dataset.key;
     api.fetchTask(id).then(response => {
       this.setState(() => {
         return {
@@ -37,6 +37,22 @@ class Home extends Component {
         };
       });
     });
+  };
+
+  onCheck = e => {
+    if (e.target.checked === true) {
+    var checked = {
+        _id:  e.target.id
+    }
+    api.complete(checked).then(response => {
+        return response.data;
+    })
+  } else if (e.target.checked === false) {
+    e.target.checked = true;
+    alert("Can't undo yet, feature coming soon.")
+  } else (
+    alert("A problem occured.")
+  )
   };
 
   render() {
@@ -58,7 +74,7 @@ class Home extends Component {
     return (
       <div>
         <NavLink to="/newtask" >New Task</NavLink>
-        <Lists lists={this.state.lists} onSelectTask={this.onSelectTask} />
+        <Lists lists={this.state.lists} onSelectTask={this.onSelectTask} onCheck={this.onCheck}/>
         <br />
         <Switch>
           <Route exact path="/editTask" render={ModifyTask} />

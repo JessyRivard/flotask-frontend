@@ -28,5 +28,14 @@ module.exports = {
       .then(response => {
         return response.data;
       });
+  },
+  complete: function(task) {
+    console.log(task)
+    return window
+      .axios(encodedURI + "tasks/complete", { method: "POST", data: task })
+      .then(response => {
+          return response.data;
+        
+      });
   }
 };

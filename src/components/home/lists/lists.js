@@ -11,6 +11,8 @@ class Lists extends Component {
             <Tasks
                 tasks={list.tasks}
                 onSelectTask={this.props.onSelectTask}
+                onCheck={this.props.onCheck}
+
             />
         </div>))}</div>
         )}
